@@ -1,0 +1,7 @@
+/vendor
+qa-report.phar
+box.json
+private.key
+qa-report.phar.pubkey
+.idea
+.phpunit.result.cache
