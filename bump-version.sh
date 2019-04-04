@@ -65,6 +65,13 @@ if [ -f qat.phar.pubkey ]; then
     cp qat.phar.pubkey pubkeys/qat-${TAG}.phar.pubkeys
     git add pubkeys/qat-${TAG}.phar.pubkeys
     JSON="${JSON},publicKey:\"http://guillaumedelre.github.io/qat/pubkeys/qat-${TAG}.phar.pubkey\""
+JSON="${JSON},url:\"http://mattketmo.github.io/cliph/downloads/cliph-${TAG}.phar\""
+JSON="${JSON},version:\"${TAG}\""
+
+if [ -f cliph.phar.pubkey ]; then
+    cp cliph.phar.pubkey pubkeys/cliph-${TAG}.phar.pubkeys
+    git add pubkeys/cliph-${TAG}.phar.pubkeys
+    JSON="${JSON},publicKey:\"http://mattketmo.github.io/cliph/pubkeys/cliph-${TAG}.phar.pubkey\""
 fi
 
 #
