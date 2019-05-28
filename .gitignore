@@ -5,3 +5,12 @@ private.key
 qa-report.phar.pubkey
 .idea
 .phpunit.result.cache
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+/artifacts
+/qat_report

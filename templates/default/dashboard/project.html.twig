@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QA-Tools | {{ page_section|capitalize|e }} {{ page_name|capitalize|e }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="../assets/css/sunburst.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" />
+{% endblock %}
+
+{% block navigation %}
+    {{ include('default/dashboard/navigation.html.twig') }}
+{% endblock %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        {% block content_header %}
+            {{ include('default/dashboard/header.html.twig') }}
+        {% endblock %}
+
+        <div class="row my-3">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="default" role="tabpanel">
+                    {{ include('default/dashboard/default.html.twig') }}
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.1/d3.min.js"
+            integrity="sha256-ENO7t8+Ybtwje8m2HzoxQPqICSxCbZ2GWOg/LZH8lyM=" crossorigin="anonymous"></script>
+    <script src="../assets/js/sunburst.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript">
+        (function () {
+            {{ sunburst(artifacts)|raw }}
+            {{ graphPhpmetricsViolations('canvas-phpmetrics', artifacts)|raw }}
+            {{ graphPhpmetricsAverages('canvas-avg', artifacts)|raw }}
+            {{ graphCrap('canvas-crap', artifacts)|raw }}
+        })();
+    </script>
+{% endblock %}

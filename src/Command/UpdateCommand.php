@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class UpdateCommand extends Command
 {
-    const MANIFEST_FILE = 'http://guillaumedelre.github.io/qat/manifest.json';
+    private const MANIFEST_FILE = 'http://guillaumedelre.github.io/qat/manifest.json';
 
     protected function configure()
     {

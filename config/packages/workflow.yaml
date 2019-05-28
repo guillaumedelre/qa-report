@@ -1,0 +1,24 @@
+framework:
+    workflows:
+        qa_report:
+            type: state_machine
+            audit_trail:
+                enabled: true
+            supports:
+                - Agilicode\QAT\Entity\StateMachine\ReportStateMachine
+            initial_place: init
+            places:
+                - init
+                - artifacts_collected
+                - report_rendered
+                - terminated
+            transitions:
+                collecting:
+                    from: init
+                    to: artifacts_collected
+                rendering:
+                    from: artifacts_collected
+                    to: report_rendered
+                finalizing:
+                    from: report_rendered
+                    to: terminated

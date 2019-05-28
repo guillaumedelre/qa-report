@@ -1,0 +1,64 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    Agilicode\QAT\:
+        resource: '../src/*'
+        exclude: '../src/{Core,Domains,Entity,Middleware,Migrations,Tests,Kernel.php}'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    Agilicode\QAT\Interfaces\ProjectContainerInterface: '@qat.container.projects'
+
+    # Workflows
+    Agilicode\QAT\Event\Subscriber\ReportRenderingSubscriber:
+        $options: '%qat.report.config%'
+
+    # Collectors
+    Agilicode\QAT\Interfaces\CollectorInterface: '@Agilicode\QAT\Collector\ChainCollector'
+
+    Agilicode\QAT\Collector\CucumberJsonCollector:
+        $jsonEncoder: '@serializer.encoder.json'
+
+    Agilicode\QAT\Collector\PhpmetricLogCollector:
+        $jsonEncoder: '@serializer.encoder.json'
+
+    Agilicode\QAT\Collector\CloverCollector:
+        $xmlEncoder: '@serializer.encoder.xml'
+
+    Agilicode\QAT\Collector\JUnitCollector:
+        $xmlEncoder: '@serializer.encoder.xml'
+
+    Agilicode\QAT\Collector\Crap4jCollector:
+        $xmlEncoder: '@serializer.encoder.xml'
+
+    Agilicode\QAT\Collector\ChainCollector:
+        arguments:
+            -
+                - '@Agilicode\QAT\Collector\CucumberJsonCollector'
+                - '@Agilicode\QAT\Collector\JUnitCollector'
+                - '@Agilicode\QAT\Collector\Crap4jCollector'
+                - '@Agilicode\QAT\Collector\CloverCollector'
+                - '@Agilicode\QAT\Collector\PhpmetricLogCollector'
+
+    # Serializer
+    Agilicode\QAT\Serializer\JUnitFileNormalizer:
+        $xmlEncoder: '@serializer.encoder.xml'
+
+    # Renderer
+    Agilicode\QAT\Interfaces\RendererInterface: '@Agilicode\QAT\Renderer\ChainRenderer'
+
+    Agilicode\QAT\Renderer\ChainRenderer: ~

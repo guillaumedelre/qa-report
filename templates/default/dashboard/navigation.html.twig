@@ -1,0 +1,9 @@
+<div class="nav-scroller bg-light shadow-sm">
+    <nav class="nav nav-underline">
+        {% for navigation_link in navigation_links %}
+            <a class="nav-link {% if navigation_link.label == current_navigation_link %}active{% endif %}" href="{{ navigation_link.href }}">
+                {{ navigation_link.label|capitalize|e }}
+            </a>
+        {% endfor %}
+    </nav>
+</div>

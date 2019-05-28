@@ -1,17 +1,10 @@
-# QAT
+# QA-Tools aka QAT
 
 <pre>
-         __________________________________________________________
-       /                                                            \
-      |    QAT helps you manipulate the qa metrics of your project.  |
-       \                                                            /
-        |  ________________________________________________________/
-        |/ 
- /\_/\    
-( o.o )  Alias:    QAT
- > ^ <   Fullname: QA-Tools
- ===== 
-  QAT    
+   /\_/\
+  ( o.o )
+   > ^ <
+  \|_|_| 
  </pre>
 
 # Install
@@ -26,3 +19,8 @@
 
 Install the [box](http://box-project.org/) tool, then run `box build` to build
 a PHAR file. Then you can launch the app: `./qat.phar`.
+
+# inspired by
+        "codacy/coverage": "^1.4",
+        "razesoldier/junit-log-parser": "dev-master",
+        "d0x2f/clover-merge": "^1.0"

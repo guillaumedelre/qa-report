@@ -1,0 +1,58 @@
+autoconfigure:
+    lookup:
+        in: ./artifacts
+        name: composer.lock
+        not_name: ~
+        path: ~
+        not_path:
+            - vendor
+        contains: ~
+        not_contains: ~
+        exclude:
+            - vendor
+        depth:
+            - '>= 0'
+            - '< 10'
+    vendors:
+        -
+            name: behat
+            package: behat/behat
+            lookup:
+                in: ./artifacts
+                path: var/build/behat
+                name:
+                    - '*.xml'
+                    - '*.json'
+        -
+            name: phpunit
+            package: phpunit/phpunit
+            lookup:
+                in: ./artifacts
+                path: var/build/phpunit
+                name: '*.xml'
+        -
+            name: phpcs
+            package: friendsofphp/php-cs-fixer
+            lookup:
+                in: ./artifacts
+                path: var/build/phpcs
+                name:
+                    - '*.xml'
+        -
+            name: phpmetrics
+            package: phpmetrics/phpmetrics
+            lookup:
+                in: ./artifacts
+                path: var/build/phpmetrics
+                name:
+                    - '*.log'
+
+report:
+    title: mezzo
+    output: ./qat_report
+    assets:
+        source: ./assets
+        destination: ./qat_report/assets
+    brand_link:
+        label: QA-Tools
+        href: ./qat_report/index.html

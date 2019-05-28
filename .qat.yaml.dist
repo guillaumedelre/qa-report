@@ -1,0 +1,68 @@
+project: "project"
+output: /path/to/html/report
+layout: /path/to/layout.html.twig
+jobs:
+    - name: authentication
+      logo: /path/to/logo.svg
+      directories:
+          - /authentication/var/build/phpunit/
+          - /authentication/var/build/behat/
+    - name: bam
+      logo: /path/to/logo.svg
+      directories:
+          - /bam/var/build/phpunit/
+          - /bam/var/build/behat/
+    - name: common
+      logo: /path/to/logo.svg
+      directories:
+          - /common/var/build/phpunit/
+    - name: consumer
+      logo: /path/to/logo.svg
+      directories:
+          - /consumer/var/build/phpunit/
+          - /consumer/var/build/behat/
+    - name: content
+      logo: /path/to/logo.svg
+      directories:
+          - /content/var/build/phpunit/
+          - /content/var/build/behat/
+    - name: conversion
+      logo: /path/to/logo.svg
+      directories:
+          - /conversion/var/build/phpunit/
+          - /conversion/var/build/behat/
+    - name: dispatcher
+      logo: /path/to/logo.svg
+      directories:
+          - /dispatcher/var/build/phpunit/
+          - /dispatcher/var/build/behat/
+    - name: exposure
+      logo: /path/to/logo.svg
+      directories:
+          - /exposure/var/build/phpunit/
+          - /exposure/var/build/behat/
+    - name: media
+      logo: /path/to/logo.svg
+      directories:
+          - /media/var/build/phpunit/
+          - /media/var/build/behat/
+    - name: notify
+      logo: /path/to/logo.svg
+      directories:
+          - /notify/var/build/phpunit/
+          - /notify/var/build/behat/
+    - name: product
+      logo: /path/to/logo.svg
+      directories:
+          - /product/var/build/phpunit/
+          - /product/var/build/behat/
+    - name: shorty
+      logo: /path/to/logo.svg
+      directories:
+          - /shorty/var/build/phpunit/
+          - /shorty/var/build/behat/
+    - name: sitemap
+      logo: /path/to/logo.svg
+      directories:
+          - /sitemap/var/build/phpunit/
+          - /sitemap/var/build/behat/

@@ -1,16 +1,18 @@
 {
     "chmod": "0755",
     "directories": [
-        "src"
+        "src",
+        "config",
+        "templates"
     ],
     "files": [
+        ".env",
         "LICENSE",
         "vendor/herrera-io/phar-update/res/schema.json"
     ],
     "finder": [
         {
-            "name": "*.php",
-            "exclude": ["Tests"],
+            "exclude": ["Tests", "tests"],
             "in": "vendor"
         }
     ],

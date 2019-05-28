@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QA-Tools | {{ page_section|capitalize|e }} {{ page_name|capitalize|e }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css" />
+{% endblock %}
+
+{% block navigation %}
+    {{ include('default/dashboard/navigation.html.twig') }}
+{% endblock %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        <div class="card-columns my-3">
+            {% include 'default/dashboard/organisms/file_list.html.twig' %}
+            {% include 'default/dashboard/organisms/junit_tests_sum.html.twig' %}
+
+            {% include 'default/dashboard/organisms/cucumber_features_sum.html.twig' %}
+{#            {% include 'default/dashboard/organisms/cucumber_feature_doughnut.html.twig' %}#}
+
+{#            {% include 'default/dashboard/organisms/cucumber_scenario_sum.html.twig' %}#}
+{#            {% include 'default/dashboard/organisms/cucumber_scenario_doughnut.html.twig' %}#}
+
+{#            {% include 'default/dashboard/organisms/cucumber_steps_sum.html.twig' %}#}
+{#            {% include 'default/dashboard/organisms/cucumber_step_doughnut.html.twig' %}#}
+
+{#            {% include 'default/dashboard/organisms/cucumber_duration_sum.html.twig' %}#}
+
+{#            {% include 'default/dashboard/organisms/cucumber_time_by_feature_avg.html.twig' %}#}
+{#            {% include 'default/dashboard/organisms/cucumber_time_by_scenario_avg.html.twig' %}#}
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        {#{{ cucumberDoughnutStep('canvas-doughnut-step', artifacts)|raw }}#}
+        {{ cucumberDoughnutFeature('canvas-doughnut-feature', artifacts)|raw }}
+        {#        {{ cucumberDoughnutScenario('canvas-doughnut-scenario', artifacts)|raw }}#}
+        {#{{ cucumberDoughnutBenchFeature('canvas-doughnut-bench-feature', artifacts)|raw }}#}
+        {#{{ cucumberDoughnutBenchScenario('canvas-doughnut-bench-scenario', artifacts)|raw }}#}
+    </script>
+{% endblock %}
+
